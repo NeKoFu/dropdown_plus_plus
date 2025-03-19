@@ -355,11 +355,13 @@ class DropdownFormFieldState<T> extends State<DropdownFormField>
   /// Dettach overlay from the dropdown widget
   _removeOverlay() {
     if (_overlayEntry != null) {
-      _overlayBackdropEntry!.remove();
-      _overlayEntry!.remove();
+      _overlayBackdropEntry?.remove();
+      _overlayEntry?.remove();
       _overlayEntry = null;
-      _searchTextController.value = TextEditingValue.empty;
-      setState(() {});
+      if(context.mounted){
+        _searchTextController.value = TextEditingValue.empty;
+        setState(() {});
+      }
     }
   }
 
